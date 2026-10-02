@@ -1,0 +1,40 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      // Runs main.py on the board every time it is saved, and reports what
+      // it did. In a Codespace this is also the default terminal, so it
+      // starts by itself. This task is for running it by hand.
+      "label": "cyberdeck",
+      "type": "shell",
+      "command": "python3 .vscode/autorun.py",
+      "isBackground": true,
+      "presentation": {
+        "reveal": "always", "focus": true, "panel": "dedicated",
+        "group": "wokwi", "clear": true
+      },
+      "problemMatcher": [],
+      "detail": "Save main.py (Cmd+S or Ctrl+S) and it runs on the board. Read the output in the Wokwi Terminal."
+    },
+    {
+      "label": "Fix the serial port",
+      "type": "shell",
+      // After a page reload, Wokwi's old serial server can keep the port and
+      // the next Start fails with EADDRINUSE. This frees it. See autorun.py.
+      "command": "python3 .vscode/autorun.py --fix-port",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated", "group": "wokwi" },
+      "detail": "Wokwi said the port is in use, or the simulation runs but nothing prints. Run this, then press Start again."
+    },
+    {
+      "label": "Send code now",
+      "type": "shell",
+      // Asks the running watcher to run main.py again. Same as saving the
+      // file without changing it.
+      "command": "python3 .vscode/autorun.py --once",
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated", "group": "wokwi" },
+      "detail": "Run main.py again without changing it. Read the output in the Wokwi Terminal."
+    }
+  ]
+}
